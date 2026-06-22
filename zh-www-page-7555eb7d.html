@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <meta name="description" content="关于 leyu 的简明指南与访问提醒">
+  <title>leyu · 简明指南</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #f5fafc;
+      color: #1a2e3b;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* 开场短句 — 干净的引导 */
+    .opening {
+      margin: 1.8rem 0 0.5rem 0;
+    }
+
+    .opening h1 {
+      font-size: 2.1rem;
+      font-weight: 500;
+      letter-spacing: -0.3px;
+      color: #0b4f5e;
+      border-left: 6px solid #3e9aa7;
+      padding-left: 18px;
+    }
+
+    .opening p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      color: #3b6070;
+      max-width: 600px;
+    }
+
+    /* 承接段落 */
+    .bridge {
+      background: #e5f2f5;
+      padding: 1.2rem 1.6rem;
+      border-radius: 28px 12px 28px 12px;
+      margin: 1.6rem 0 2rem 0;
+      color: #1f4455;
+      font-size: 1rem;
+      box-shadow: 0 4px 8px rgba(30, 90, 100, 0.04);
+    }
+
+    .bridge strong {
+      color: #0b5b6b;
+    }
+
+    /* 网格卡片 – 特点列表 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 2rem 0;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 1.4rem 1.2rem;
+      box-shadow: 0 6px 16px rgba(25, 90, 105, 0.06);
+      transition: 0.2s ease;
+      border: 1px solid #d8e8ed;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(20, 80, 100, 0.08);
+      border-color: #aacdd9;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #0b4f5e;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card h3::before {
+      content: "·";
+      color: #2f95a6;
+      font-size: 2rem;
+      line-height: 0.8;
+      margin-right: 2px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #315b6b;
+      margin-top: 4px;
+    }
+
+    .card small {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #6796a5;
+      background: #ecf5f8;
+      padding: 2px 12px;
+      border-radius: 30px;
+    }
+
+    /* 场景提醒——温和的信息卡片 */
+    .reminder {
+      background: #dceef3;
+      border-radius: 30px;
+      padding: 1.6rem 1.8rem;
+      margin: 2.2rem 0 1.8rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .reminder-text {
+      flex: 2 1 220px;
+    }
+
+    .reminder-text p {
+      font-size: 0.95rem;
+      color: #1b4656;
+      margin-bottom: 4px;
+    }
+
+    .reminder-text p:last-of-type {
+      margin-top: 0.5rem;
+      font-weight: 450;
+    }
+
+    .reminder-badge {
+      background: white;
+      border-radius: 60px;
+      padding: 0.3rem 1.2rem;
+      font-size: 0.85rem;
+      color: #0b5b6b;
+      border: 1px solid #b0d1db;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    /* FAQ 摘要 — 极简折叠感 */
+    .faq-summary {
+      background: white;
+      border-radius: 30px;
+      padding: 1.2rem 1.6rem;
+      margin: 1.8rem 0 2rem 0;
+      border: 1px solid #caddf0;
+      box-shadow: 0 2px 8px rgba(30, 70, 90, 0.02);
+    }
+
+    .faq-summary details {
+      margin: 10px 0;
+      border-bottom: 1px solid #e7f1f5;
+      padding: 6px 0;
+    }
+
+    .faq-summary details:last-of-type {
+      border-bottom: 0;
+    }
+
+    .faq-summary summary {
+      font-weight: 500;
+      color: #0a4e5e;
+      cursor: pointer;
+      padding: 4px 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .faq-summary summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-summary summary::before {
+      content: "▸";
+      color: #3e9aa7;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    .faq-summary details[open] summary::before {
+      content: "▾";
+    }
+
+    .faq-summary .answer {
+      padding: 8px 0 8px 18px;
+      color: #2f5768;
+      font-size: 0.93rem;
+    }
+
+    /* 温和结尾 */
+    .gentle-footer {
+      margin: 2.5rem 0 1.2rem 0;
+      padding: 1rem 0;
+      border-top: 1px solid #cfdfe6;
+      text-align: center;
+      color: #3f6c7e;
+      font-size: 0.9rem;
+      letter-spacing: 0.2px;
+    }
+
+    .gentle-footer a {
+      color: #1d6e80;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #8cb8c7;
+    }
+
+    .gentle-footer a:hover {
+      color: #09444f;
+      border-bottom-color: #09444f;
+    }
+
+    /* 移动端适应 */
+    @media (max-width: 520px) {
+      body {
+        padding: 12px;
+      }
+      .opening h1 {
+        font-size: 1.7rem;
+        padding-left: 14px;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .reminder {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1.2rem;
+      }
+      .reminder-badge {
+        align-self: flex-start;
+      }
+      .bridge {
+        padding: 1rem 1.2rem;
+      }
+      .card {
+        padding: 1.2rem 1rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .opening h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <!-- 开场短句 -->
+  <div class="opening">
+    <h1>leyu · 一点说明</h1>
+    <p>如果你正在寻找一个相对清晰的起点，这里整理了几条有用的线索。</p>
+  </div>
+
+  <!-- 承接段落：简明指南 -->
+  <div class="bridge">
+    <strong>从哪开始？</strong> 很多人初次接触时都会先浏览一下概况。一个自然的方式是直接查看 
+    <a href="https://zh-www-leyu.com" style="color:#0b5b6b; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #83b7c7;">leyu</a> 
+    本身提供的基本信息，再根据你的兴趣和节奏进一步探索。不需要一次看完所有内容，按需了解就好。
+  </div>
+
+  <!-- 特点列表 (网格卡片) -->
+  <div class="feature-grid">
+    <div class="card">
+      <h3>内容结构</h3>
+      <p>页面分类清晰，主要模块通过导航区分，常见功能和说明都放在容易找到的地方。</p>
+      <small>浏览前可大致扫一眼导航</small>
+    </div>
+    <div class="card">
+      <h3>访问环境</h3>
+      <p>不同网络下加载速度可能有差异，建议使用稳定连接。如果遇到页面响应慢，可以稍后重试。</p>
+      <small>检查网络连接</small>
+    </div>
+    <div class="card">
+      <h3>设备适配</h3>
+      <p>在手机、平板和电脑上均做了相应版式调整，文字和按钮会按屏幕大小重新排列。</p>
+      <small>推荐竖屏浏览</small>
+    </div>
+    <div class="card">
+      <h3>语言与区域</h3>
+      <p>界面以中文为主，部分辅助说明可能包含简明英文，整体符合中文阅读习惯。</p>
+      <small>区域设置自动匹配</small>
+    </div>
+  </div>
+
+  <!-- 场景提醒 (访问提醒角度) -->
+  <div class="reminder">
+    <div class="reminder-text">
+      <p>如果你打算用移动设备访问，建议提前连好 Wi‑Fi 或保持信号稳定。</p>
+      <p>页面加载时请留意地址栏是否为 <span style="font-family: monospace; background: #e7f1f5; padding: 0 4px; border-radius: 6px;">zh-www-leyu.com</span></p>
+    </div>
+    <span class="reminder-badge">🔹 常见提醒</span>
+  </div>
+
+  <!-- FAQ 摘要 (简单实用的问答) -->
+  <div class="faq-summary">
+    <details>
+      <summary>需要注册或登录才能浏览主要内容吗？</summary>
+      <div class="answer">大多数信息以公开形式展示，部分个性化功能可能涉及账户操作，具体以页面指引为准。</div>
+    </details>
+    <details>
+      <summary>站点是否有官方的备用域名？</summary>
+      <div class="answer">目前以 <strong>zh-www-leyu.com</strong> 为主要地址，如有变更请留意站内公告或帮助页面。</div>
+    </details>
+    <details>
+      <summary>在海外访问是否有限制？</summary>
+      <div class="answer">不同地区的网络策略不同，如果遇到连接问题，可以检查本地网络或尝试其他时间段访问。</div>
+    </details>
+  </div>
+
+  <!-- 温和结尾 -> 自然嵌入 leyu 链接 -->
+  <div class="gentle-footer">
+    <p>以上内容仅供一般参考。你可以随时通过 <a href="https://zh-www-leyu.com">leyu</a> 获取最新、最准确的信息。</p>
+    <p style="margin-top: 8px; font-size: 0.8rem; color: #6c8f9e;">— 整理于一个安静的下午 · 保持简单 —</p>
+  </div>
+</div>
+</body>
+</html>
